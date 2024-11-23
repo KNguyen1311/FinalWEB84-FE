@@ -1,107 +1,162 @@
 import React, { useState } from "react";
 
-const TeacherForm = () => {
-  const [showForm, setShowForm] = useState(false);  // State điều khiển việc hiển thị form
-  const [name, setName] = useState("");
-  const [position, setPosition] = useState("");
-  const [education, setEducation] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+const TeacherForm = ({ onBack, onSubmit }) => {
+  const [formData, setFormData] = useState({
+    name: "",
+    dob: "",
+    phone: "",
+    email: "",
+    address: "",
+    position: "",
+    degree: "",
+    major: "",
+    status: false,
+    graduationYear: "",
+    image: null,
+  });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
 
-    if (!name || !position || !education || !startDate || !email) {
-      setMessage("All fields are required!");
-      return;
-    }
 
-    const teacherData = { name, position, education, startDate, email };
-    try {
-      const response = await fetch("http://localhost:3000/api/teachers/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(teacherData),
-      });
-
-      const data = await response.json();
-      if (response.ok) {
-        setMessage("Teacher created successfully!");
-      } else {
-        setMessage(data.error || "An error occurred while creating the teacher");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      setMessage("Error connecting to the server");
-    }
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData({
+      ...formData,
+      [name]: type === "checkbox" ? checked : value,
+    });
   };
 
-  return (
-    <div className="form-container">
-      {!showForm && (
-        <button className="create-btn" onClick={() => setShowForm(true)}>
-          Create Teacher
-        </button>
-      )}
+  
 
-      {showForm && (
-        <>
-          <h2>Create New Teacher</h2>
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label>Name</label>
+  const handleImageChange = (e) => {
+    setFormData({ ...formData, image: e.target.files[0] });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Submitting form with data:", formData); 
+    if (onSubmit) {
+      onSubmit(formData); 
+    } else {
+      console.error("onSubmit is not defined");
+    }
+  };
+  
+
+  return (
+    <div className="teacher-form-container">
+      <div className="teacher-form1">
+        <h2>Tạo mới thông tin Giáo viên</h2>
+        <form onSubmit={handleSubmit}>
+    
+          <div className="form-group image-upload">
+            <label htmlFor="image">Chọn ảnh</label>
+            <input type="file" id="image" onChange={handleImageChange} />
+          </div>
+
+        
+          <div className="form-group grid-layout">
+            <div>
+              <label>Họ và tên</label>
               <input
                 type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+                placeholder="Nhập họ và tên"
                 required
               />
             </div>
-            <div className="form-group">
-              <label>Position</label>
-              <input
-                type="text"
-                value={position}
-                onChange={(e) => setPosition(e.target.value)}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label>Education</label>
-              <input
-                type="text"
-                value={education}
-                onChange={(e) => setEducation(e.target.value)}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label>Start Date</label>
+            <div>
+              <label>Ngày sinh</label>
               <input
                 type="date"
-                value={startDate}
-                onChange={(e) => setStartDate(e.target.value)}
+                name="dob"
+                value={formData.dob}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div>
+              <label>Số điện thoại</label>
+              <input
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleInputChange}
+                placeholder="Nhập số điện thoại"
                 required
               />
             </div>
-            <div className="form-group">
+            <div>
               <label>Email</label>
               <input
                 type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                placeholder="example@school.edu.vn"
                 required
               />
             </div>
-            <button type="submit" className="submit-btn">Create Teacher</button>
-          </form>
-        </>
-      )}
+            <div>
+              <label>Địa chỉ</label>
+              <input
+                type="text"
+                name="address"
+                value={formData.address}
+                onChange={handleInputChange}
+                placeholder="Nhập địa chỉ"
+              />
+            </div>
+          </div>
 
-      {message && <p className="message">{message}</p>}
+          {/* Vị trí công tác */}
+          <div className="form-group">
+            <label>Vị trí công tác</label>
+            <select
+              name="position"
+              value={formData.position}
+              onChange={handleInputChange}
+            >
+              <option value="">Chọn vị trí công tác</option>
+              <option value="Giảng viên">Giảng viên</option>
+              <option value="Trợ giảng">Trợ giảng</option>
+              <option value="Cán bộ hành chính">Cán bộ hành chính</option>
+            </select>
+          </div>
+
+    
+          <div className="form-group grid-layout">
+            <div>
+              <label>Trạng thái</label>
+              <input
+                type="checkbox"
+                name="status"
+                checked={formData.status}
+                onChange={handleInputChange}
+              />
+              Hoàn thành
+            </div>
+            <div>
+              <label>Năm tốt nghiệp</label>
+              <input
+                type="number"
+                name="graduationYear"
+                value={formData.graduationYear}
+                onChange={handleInputChange}
+                placeholder="Nhập năm tốt nghiệp"
+              />
+            </div>
+          </div>
+
+    
+          <div className="form-buttons">
+            <button type="button" onClick={onBack}>
+              Quay lại
+            </button>
+            <button type="submit">Lưu</button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

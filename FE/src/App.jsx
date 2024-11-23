@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <h1>Welcome to Teacher Dashboard</h1>
       <TeachersList />
-      <TeacherForm />
+   
      
     </div>
   );

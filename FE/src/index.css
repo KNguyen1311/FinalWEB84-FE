@@ -1,157 +1,266 @@
-/* Container của form */
-.form-container {
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 50px;
-  }
-  
-  /* Tiêu đề của form */
-  .form-container h2 {
-    text-align: center;
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  /* Nhóm các trường nhập liệu */
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  /* Label cho các trường nhập liệu */
-  .form-group label {
-    display: block;
-    font-size: 14px;
-    font-weight: 600;
-    color: #555;
-    margin-bottom: 5px;
-  }
-  
-  /* Input cho các trường nhập liệu */
-  .form-group input {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-sizing: border-box;
-    background-color: #f8f8f8;
-    margin-bottom: 10px;
-  }
-  
-  /* Đổi màu khi focus vào input */
-  .form-group input:focus {
-    border-color: #5b9bd5;
-    outline: none;
-  }
-  
-  /* Nút Submit */
-  .submit-btn {
-    width: 100%;
-    padding: 15px;
-    background-color: #5b9bd5;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .submit-btn:hover {
-    background-color: #4a8dc7;
-  }
-  
-  /* Thông báo lỗi */
-  .message {
-    color: red;
-    font-size: 14px;
-    margin-top: 10px;
-    text-align: center;
-  }
-  
-  /* Nút Create Teacher */
-  .create-btn {
-    padding: 10px 20px;
-    background-color: #5b9bd5;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 18px;
-    cursor: pointer;
-    display: block;
-    width: 100%;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .create-btn:hover {
-    background-color: #4a8dc7;
-  }
-  
-  /* Điều chỉnh cho màn hình di động */
-  @media (max-width: 600px) {
-    .form-container {
-      padding: 15px;
-    }
-  
-    .form-container h2 {
-      font-size: 20px;
-    }
-  
-    .form-group input {
-      font-size: 14px;
-    }
-  
-    .submit-btn {
-      font-size: 16px;
-    }
-  
-    .create-btn {
-      font-size: 16px;
-    }
-  }
-  .teacher-positions-container {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-  }
-  
-  .teacher-positions-container h1 {
-    text-align: center;
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .teacher-positions-container ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .teacher-positions-container li {
-    background-color: #f1f1f1;
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 18px;
-  }
-  
-  .teacher-positions-container p {
-    text-align: center;
-    color: red;
-    font-weight: bold;
-  }
-  
-  .teacher-positions-container .loading {
-    text-align: center;
-    font-size: 18px;
-    color: #555 
-  }
+.app-container {
+  font-family: Arial, sans-serif;
+}
+
+.app-header {
+  background-color: #4a148c;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.content-container {
+  display: flex;
+}
+
+.sidebar {
+  width: 200px;
+  background-color: #f3f3f3;
+  padding: 10px;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 10px 0;
+  cursor: pointer;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.teacher-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.teacher-table th,
+.teacher-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.teacher-table th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+.teacher-form {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.teacher-form h1 {
+  text-align: center;
+  color: #4a148c;
+}
+
+.teacher-form div {
+  margin-bottom: 15px;
+}
+
+.teacher-form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.teacher-form input {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.teacher-form button {
+  margin-right: 10px;
+  padding: 10px 15px;
+  background-color: #4a148c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.teacher-form .back-button {
+  background-color: #ccc;
+  color: black;
+}
+
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.pagination button {
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.pagination span {
+  font-weight: bold;
+}
+
+.teacher-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Hiệu ứng mờ nền */
+  z-index: 1000;
+}
+
+.teacher-form1 {
+  background: #fff;
+  padding: 20px 30px;
+  border-radius: 10px;
+  width: 50%;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.teacher-form h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.image-upload input[type="file"] {
+  margin-top: 10px;
+}
+
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-buttons button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.form-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.form-buttons button[type="button"] {
+  background-color: #6c757d;
+}
+
+.form-buttons button[type="button"]:hover {
+  background-color: #5a6268;
+}
+
+.teacher-detail {
+  margin: 20px auto;
+  max-width: 600px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.teacher-detail h2 {
+  font-size: 24px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.teacher-detail-card {
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+.teacher-detail-card p {
+  font-size: 16px;
+  margin: 10px 0;
+  line-height: 1.6;
+}
+
+.teacher-detail-card strong {
+  color: #555;
+}
+
+.back-button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.back-button:hover {
+  background-color: #0056b3;
+}
+
+.back-button:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
